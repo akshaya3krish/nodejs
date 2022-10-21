@@ -8,3 +8,4 @@ const isString =(val) =>
         return false;
 }
 console
+for
