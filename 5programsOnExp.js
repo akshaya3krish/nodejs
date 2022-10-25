@@ -1,4 +1,4 @@
-//programs on import and export
+//programs on export
 //program - 1
 const car = {
     nameOfCar : 'BMW',
