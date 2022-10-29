@@ -34,7 +34,7 @@ sub (100, 19, (result) => {
                 }
                 else{
                     console.log("number is above 0");
-                    if(result>=0){
+                    if(result<=0){
                         const newResult = result * 100 + "\n new result multiply by 100";
                         console.log(newResult);
                     }
