@@ -15,7 +15,7 @@ function sub1 (num, type, callback){
         callback(num);
     }
 }
-sub (100, 19, (result) => {
+sub (20, 10, (result) => {
     console.log("Result is:", result);
     if(result % 2 === 0){
         console.log("Even Number");

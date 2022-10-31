@@ -86,6 +86,7 @@ class Car{
 class addCar extends Car{
     type = 'automatic';
     noPlate = 'BMW 123';
+
     addCarMethod(){
         return `Type of car - ${this.type}\n No of car - ${this.noPlate}`;
     }
