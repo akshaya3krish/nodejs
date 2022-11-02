@@ -98,3 +98,114 @@ toStringProgram([10,20,30,40,50,"NodeJS"]).then((argResult) =>{
 }).catch((err) =>{
     console.log(`Error: ${err}`);
 })
+//program-6 -- palindrome program 
+const palindromeCheck = (string, reverseString) => {
+    return new Promise ((resolve5, reject5) => {
+        setTimeout(()=>{
+            try{
+                if(string === reverseString) {
+                     arrayValues = string.split('');
+                     reverseArrayValues = arrayValues.reverse();
+                     reverseString = reverseArrayValues.join('');
+               } 
+                resolve5(reverseString);   
+            }catch(err){
+                reject5(err);
+            }
+        }, 4000)
+    })
+}
+palindromeCheck("mom").then((reverseString)=>{
+    console.log(`It is a palindrome: ${reverseString}`);
+}).catch((err)=>{
+    console.log(`It is not a palindrome: ${err}`);
+})
+//program-7 --join string program
+const joinFunction = (arr) =>{
+    return new Promise ((resolve6, reject6) =>{
+        setTimeout(() =>{
+            try{
+                arr = arr.join(" ");
+                resolve6(arr);
+            }
+            catch(err){
+                reject6(err);
+            }
+        },2000)
+    })
+}
+joinFunction([10, 20, 30, 40, 50, 60, 70, 80, 90, 100]).then((arr)=>{
+    console.log(`Joined array is: ${arr}`);
+}).catch((err)=>{
+    console.log(`Error Occurred: ${err}`);
+})
+
+//program-8 --shift method program
+const shiftFunction = (classNames) =>{
+    return new Promise((resolve7, reject7) =>{
+        setTimeout(()=>{
+            try{
+                className = classNames.shift();
+                resolve7(classNames);
+            }catch(err){
+                reject7(err);
+            }
+        },2000)
+    })
+}
+shiftFunction(["Akshaya", "Arun", "Faiz", "Roshan","Sakshi", "Yashwanth"]).then((result)=>{
+    console.log(`After using shift method: ${result}`);
+}).catch((err)=>{
+    console.log(`Error occurred on shift method: ${err}`);
+})
+
+//program-9 -- primenumber check program using try catch finally, timeout using promises
+const primeNumCheck = (number) =>{
+    return new Promise((resolve8, reject8)=>{
+        setTimeout(()=>{
+            try{
+                if (number <= 1) {
+                    return false;
+                  } else {
+                    for (let i = 2; i < number; i++) {
+                      if (number % i == 0) {
+                        return false;
+                      }
+                    }
+                    resolve8(number);
+                  }
+            }
+            catch(err){
+                reject8(err);
+            }
+            finally{
+                console.log("Entered number is not a prime number");
+            }
+        },2000)
+    })
+}
+primeNumCheck(10).then((result)=>{
+    console.log(`Entered number is a prime number: ${result}`);
+}).catch((err)=>{
+    console.log(`Error occured while checking primenumber: ${err}`);
+})
+
+//program-10 --concatenation program using try catch timeout callback and using promises
+const concat = (str1, str2, callback) =>{
+    return new Promise((resolve9, reject9)=>{
+        setTimeout(()=>{
+            try{
+                const newString = str1.concat(" ",str2);
+                callback(newString);
+                resolve9(newString);
+            }catch(err){
+                reject9(err);
+            }
+        },2000)
+    })
+}
+concat("Akshaya", "Krishnan", (newString)=>{`callback: ${newString}`}).then((result)=>{
+    console.log(`Concatenated string is: ${result}`);
+}).catch((err)=>{
+    console.log(`Error happened in concatenation: ${err}`);
+})
