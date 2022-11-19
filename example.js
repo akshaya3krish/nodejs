@@ -1,19 +1,30 @@
-// program to check if the string is palindrome or not
+const arr = ["A", "B", "C", "D"];
+const result = arr.shift();
+console.log(result);
+console.log(arr);
 
-function checkPalindrome(string) {
 
-    // find the length of a string
-    const len = string.length;
 
-    // loop through half of the string
-    for (let i = 0; i < len / 2; i++) {
+const arr1 = ["A", "B", "C", "D"];
+const result1 = arr1.pop();
+console.log(result1);
+console.log(arr1);
 
-        // check if first and last string are same
-        if (string[i] !== string[len - 1 - i]) {
-            return 'It is not a palindrome';
-        }
+const arr2 = ["A", "B", "C", "D"];
+const result2 = arr2.push("E");
+console.log(result2);
+console.log(arr2);
+
+const a = [
+    {
+        name : "gvkt",
+        age : 33,
+        city : "hud"
+    },
+    {
+        name : "mmki",
+        age : 26 ,
+        city : "banglore"
     }
-    return 'It is a palindrome';
-}
-
-console.log(checkPalindrome("daddy"));
+]
+console.log(`{Name: ${a[0].name}, Age:${a[1].age}}`);
