@@ -1,0 +1,28 @@
+<style>
+    table, th, td {
+      border: 1px solid rgb(12, 35, 138);
+      border-collapse: collapse;
+    }
+    th, td {
+      background-color: #f2f5fa;
+    }
+</style>
+
+
+<table>
+    <tr>
+       <th>Name</th>
+       <th>Age</th>
+       <th>Address</th>
+       <th>PhoneNo</th>
+    </tr>
+ 
+    <% for (let i = 0; i < data.length; i++) { %>
+     <tr>
+       <td style="color:rgb(13, 27, 230)"><%= data[i].Name %></td>
+       <td><%= data[i].Age %></td>
+       <td><%= data[i].Address %></td>
+       <td><%= data[i].PhoneNo %></td>
+     </tr>    
+    <% } %>
+ </table>
