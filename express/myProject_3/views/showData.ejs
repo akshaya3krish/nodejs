@@ -15,6 +15,7 @@
        <th>Age</th>
        <th>Address</th>
        <th>PhoneNo</th>
+       <th>college</th>
     </tr>
  
     <% for (let i = 0; i < data.length; i++) { %>
@@ -23,6 +24,9 @@
        <td><%= data[i].Age %></td>
        <td><%= data[i].Address %></td>
        <td><%= data[i].PhoneNo %></td>
+       <td><%= data[i].college %></td>
      </tr>    
     <% } %>
  </table>
+
+ <a href="/openForm">Add New Data </a>
