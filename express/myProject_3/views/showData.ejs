@@ -1,3 +1,4 @@
+<%- include('./partials/header') -%>
 <style>
     table, th, td {
       border: 1px solid rgb(12, 35, 138);
@@ -8,7 +9,7 @@
     }
 </style>
 
-
+<form method="GET" action="/getDataToBeUpdated" id="form">
 <table>
     <tr>
        <th>Name</th>
@@ -16,6 +17,8 @@
        <th>Address</th>
        <th>PhoneNo</th>
        <th>college</th>
+       <th>Update</th>
+       <th>Delete</th>
     </tr>
  
     <% for (let i = 0; i < data.length; i++) { %>
@@ -25,8 +28,12 @@
        <td><%= data[i].Address %></td>
        <td><%= data[i].PhoneNo %></td>
        <td><%= data[i].college %></td>
+       <td><button style="color:#ff9100" name="update" value="<%= data[i].Name %>">Update</button></td>
+       <td><a href="/deleteData?Name=<%= data[i].Name %>" style="color:#f52f15">Delete Entry </a> </td>
      </tr>    
     <% } %>
  </table>
+</form>
 
- <a href="/openForm">Add New Data </a>
+ <a href="/openForm" style="color:#ffffff; background-color: #0b803c">Add New Data </a><br>
+ <a href="/registrationForm" style="color:#ffffff; background-color: #750446">NewUser Register Here </a>

@@ -1,0 +1,20 @@
+<%- include('./partials/header') -%>
+<form action="/updateNewData" method="POST">
+
+    <label>Name: </label>
+    <input type="text" value=<%= dataTobeUpdated.Name %> readonly name="Name"><br><br>
+
+    <label>Age: </label>
+    <input type="text" value=<%= dataTobeUpdated.Age %> name="Age"><br><br>
+
+    <label>Address: </label>
+    <input type="text" value=<%= dataTobeUpdated.Address %> name="Address"><br><br>
+
+    <label>PhoneNo: </label>
+    <input type="text" value=<%= dataTobeUpdated.PhoneNo %> name="PhoneNo"><br><br>
+
+    <label>college: </label>
+    <input type="text" value=<%= dataTobeUpdated.college %> name="college"><br><br>
+
+    <button>Submit</button>
+</form>

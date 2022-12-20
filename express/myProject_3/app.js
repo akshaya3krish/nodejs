@@ -9,6 +9,10 @@ var usersRouter = require('./routes/users');
 const mobileRouter = require('./routes/mobiles');
 const mongoOperations = require('./routes/mongoOperations');
 const addData = require('./routes/addData');
+const updateData = require('./routes/updateData');
+const deleteData = require('./routes/deleteData');
+const registrationForm = require('./routes/registrationForm');
+const loginPage = require('./routes/loginPage');
 
 var app = express();
 
@@ -32,6 +36,14 @@ app.post('/addData', mongoOperations);
 app.put('/updateData', mongoOperations);
 app.get('/openForm', addData);
 app.post('/addNewData', addData);
+app.get('/getDataToBeUpdated', updateData);
+app.post('/updateNewData', updateData);
+app.get('/deleteData', deleteData);
+app.get('/registrationForm', registrationForm);
+app.post('/registrationForm', registrationForm);
+
+app.get('/loginPage', loginPage);
+app.post('/loginPage', loginPage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
