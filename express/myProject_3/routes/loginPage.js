@@ -27,7 +27,7 @@ router.post('/loginPage', async function(req, res, next) {
         return res.status(400).send("email not found");
 
         if(data.password === password){
-          res.render('showData', {data:data1});
+          res.render('afterLoginShowData', {data:data1});
           return;
         }else {
           return res.render('loginPage',{error:'Incorect credentials'});

@@ -1,0 +1,49 @@
+<header class="site-header">
+    <div class="site-identity">
+        <h1 style="color:#991466;">Cartoon Family</h1>
+    </div>
+    <nav class="site-navigation">
+        <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/getData">Show Data</a></li>
+            <li><a href="/openForm">Add New Data</a></li>
+            <li><a href="/getDataToBeUpdated">Update Data</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+<style>
+    table, th, td {
+      border: 1px solid rgb(12, 35, 138);
+      border-collapse: collapse;
+    }
+    th, td {
+      background-color: #f2f5fa;
+    }
+</style>
+
+<form method="GET" action="/getDataToBeUpdated" id="form">
+<table>
+    <tr>
+       <th>Name</th>
+       <th>Age</th>
+       <th>Address</th>
+       <th>PhoneNo</th>
+       <th>college</th>
+       <th>Update</th>
+       <th>Delete</th>
+    </tr>
+ 
+    <% for (let i = 0; i < data.length; i++) { %>
+     <tr>
+       <td style="color:rgb(13, 27, 230)"><%= data[i].Name %></td>
+       <td><%= data[i].Age %></td>
+       <td><%= data[i].Address %></td>
+       <td><%= data[i].PhoneNo %></td>
+       <td><%= data[i].college %></td>
+       <td><button style="color:#ff9100" name="update" value="<%= data[i].Name %>">Update</button></td>
+       <td><a href="/deleteData?Name=<%= data[i].Name %>" style="color:#f52f15">Delete Entry </a> </td>
+     </tr>    
+    <% } %>
+ </table>
+</form>

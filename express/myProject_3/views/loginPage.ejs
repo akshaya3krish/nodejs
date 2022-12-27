@@ -13,6 +13,31 @@ input[type=email], input[type=password] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+.group .errorMessage {
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+  width: 100%;
+}
+.err label {
+  color: #cc0033;
+}
+
+.err input[type=text] {
+  background-color: #fce4e4;
+  border: 1px solid #cc0033;
+  outline: none;
+}
+
+.err .errorMessage {
+  display: flex; /* Instead of inline-block */
+  width: 85%; /* Same as input width */
+  left: 15%; /* Rest of the width */
+  position: relative; /* Relative to parent */
+  
+}
 
 /* Set a style for all buttons */
 button {
@@ -78,17 +103,19 @@ span.psw {
         <input type="email" placeholder="Enter Your Email" name="email" id="email" required><br><br>
 
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="password" required><br><br>
-
+        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+        <div class="error-message">Password is a required field.</div><br><br>
   
-      <button type="submit">Login</button><br><br>
+        <button type="submit">Login</button><br><br>
         <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me<br><br>
         </label>
     </div>
-  
+  </form>
+  <form action="/">
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button><br><br>
-      <span class="psw">Forgot <a href="#">password?</a></span><br><br>
+    <a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
+<!-- <button type="button" class="cancelbtn">Cancel</button><br><br>-->
+<!-- <span class="psw">Forgot <a href="#">password?</a></span><br><br>-->
     </div>
   </form>
