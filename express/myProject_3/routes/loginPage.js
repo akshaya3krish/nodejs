@@ -1,9 +1,12 @@
 var express = require('express');
 const collection = require('../utils/mongoConnection').connection();
 var router = express.Router();
+ 
 
 router.get('/loginPage', function(req, res, next) {
-  res.render('loginPage',{error:null});
+  
+
+  res.render('loginPage',{error:null, loginStatus:false});
 });
 
 /*router.post('/loginPage', async function(req, res, next) {
@@ -27,10 +30,11 @@ router.post('/loginPage', async function(req, res, next) {
         return res.status(400).send("email not found");
 
         if(data.password === password){
-          res.render('afterLoginShowData', {data:data1});
+          res.cookie('loginPage', 'loginPage Cookies', {maxAge: 100000});
+          res.render('ShowData', {data:data1, loginStatus:true});
           return;
         }else {
-          return res.render('loginPage',{error:'Incorect credentials'});
+          return res.render('loginPage',{error:'Incorrect credentials'});
         }
   } catch (err) {
     console.log(err);

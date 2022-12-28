@@ -9,7 +9,12 @@
             <li><a href="/getData">Show Data</a></li>
             <li><a href="/openForm">Add New Data</a></li>
             <li><a href="/getDataToBeUpdated">Update Data</a></li>
-            <li><a href="/loginPage">Login</a></li>
+            <% if (loginStatus === true) { %>
+                <li><a href="/logoutPage">Logout</a></li>
+            <% }else{ %>
+                <li><a href="/loginPage">Login</a></li>
+            <% } %>
+            
         </ul>
     </nav>
 </header>

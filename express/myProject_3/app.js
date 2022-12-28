@@ -41,9 +41,14 @@ app.post('/updateNewData', updateData);
 app.get('/deleteData', deleteData);
 app.get('/registrationForm', registrationForm);
 app.post('/registrationForm', registrationForm);
-
 app.get('/loginPage', loginPage);
 app.post('/loginPage', loginPage);
+
+
+app.use('/', function(req, res){
+  res.cookie(name, 'cookies sample', {maxAge: 100000});
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

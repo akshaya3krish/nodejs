@@ -1,3 +1,4 @@
+
 <style>
   /* Bordered form */
 form {
@@ -99,6 +100,9 @@ span.psw {
 <form action="/loginPage" method="POST">
   
     <div class="container">
+      <% if (error === "Incorrect credentials") { %>
+        <p>Incorrect Credentials, Please give correct Credentials</p>
+      <% } %>
         <label for="email"><b>EmailId</b></label>
         <input type="email" placeholder="Enter Your Email" name="email" id="email" required><br><br>
 
