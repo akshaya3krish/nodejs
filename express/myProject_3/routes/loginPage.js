@@ -1,6 +1,10 @@
 var express = require('express');
+const { JsonWebTokenError } = require('jsonwebtoken');
 const collection = require('../utils/mongoConnection').connection();
 var router = express.Router();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
  
 
 router.get('/loginPage', function(req, res, next) {
@@ -30,9 +34,23 @@ router.post('/loginPage', async function(req, res, next) {
         return res.status(400).send("email not found");
 
         if(data.password === password){
-          res.cookie('loginPage', 'loginPage Cookies', {maxAge: 100000});
-          res.render('ShowData', {data:data1, loginStatus:true});
-          return;
+        const token = jwt.sign({user : email}, 'nodejsBatch3ExpressProject');
+        console.log(token);
+
+        res.cookie('loginPageCookie', token, {maxAge: 100000});
+        console.log('Cookies:', req.cookies.loginPageCookie);
+
+        try{
+        const dataVerify = jwt.verify(tokenVerification, 'nodejsBatch3ExpressProject');
+        req.email=dataVerify.email;
+        req.password=dataVerify.password;
+        return next();
+        }catch(err){
+          console.log(err);
+        }
+
+        res.render('ShowData', {data:data1, loginStatus:true});
+        return;
         }else {
           return res.render('loginPage',{error:'Incorrect credentials'});
         }

@@ -4,7 +4,12 @@ var router = express.Router();
 
 router.get('/getData', async function(req, res, next) {
     const data = await (await collection).find().toArray();
-    res.render('showData', { data });
+    console.log('Cookies:', req.cookies);
+    let loginStatus = false;
+    if(req.cookies !== null || req.cookies !== undefined){
+        loginStatus = true;
+    }
+    res.render('showData', { data, loginStatus });
 });
 
 router.get('/getSpecificData', async function(req, res, next) {

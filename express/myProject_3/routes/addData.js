@@ -3,12 +3,15 @@ const collection = require('../utils/mongoConnection').connection();
 var router = express.Router();
 
 router.get('/openForm', function(req, res, next) {
-    console.log('Cookies: ', req.cookies);
+    console.log('Cookies:', req.cookies);
     let loginStatus = false;
     if(req.cookies !== null || req.cookies !== undefined){
         loginStatus = true;
+        res.render('showForm', {loginStatus});
+    }else{
+        res.redirect('/loginPage');
     }
-  res.render('showForm', {loginStatus});
+    
 });
 
 router.post('/addNewData', async function(req, res, next) {

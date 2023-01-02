@@ -13,6 +13,7 @@ const updateData = require('./routes/updateData');
 const deleteData = require('./routes/deleteData');
 const registrationForm = require('./routes/registrationForm');
 const loginPage = require('./routes/loginPage');
+const logoutPage = require('./routes/logoutPage');
 
 var app = express();
 
@@ -43,10 +44,13 @@ app.get('/registrationForm', registrationForm);
 app.post('/registrationForm', registrationForm);
 app.get('/loginPage', loginPage);
 app.post('/loginPage', loginPage);
+app.get('/logoutPage', logoutPage);
+app.post('/logoutPage', logoutPage);
+
 
 
 app.use('/', function(req, res){
-  res.cookie(name, 'cookies sample', {maxAge: 100000});
+  res.cookie('name', 'cookies sample', {maxAge: 100000});
 });
 
 
