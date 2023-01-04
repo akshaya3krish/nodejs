@@ -5,16 +5,15 @@ var router = express.Router();
 router.get('/openForm', function(req, res, next) {
     console.log('Cookies:', req.cookies);
     let loginStatus = false;
-    if(req.cookies !== null || req.cookies !== undefined){
+    if(req.cookies != null || req.cookies != undefined){
         loginStatus = true;
-        res.render('showForm', {loginStatus});
+        res.render('showData', {loginStatus : loginStatus});
     }else{
         res.redirect('/loginPage');
     }
-    
 });
 
-router.post('/addNewData', async function(req, res, next) {
+/*router.post('/addNewData', async function(req, res, next) {
     const postedData = req.body;
     try {
         const insertResult = await (await collection).insertOne(postedData);
@@ -23,6 +22,26 @@ router.post('/addNewData', async function(req, res, next) {
     }catch(err){
         res.status(500).send('Some Error in Insertion.');
     }
+});*/
+
+router.post('/addNewData', async function(req, res, next) {
+    const postedData = req.body;
+    try {
+        let loginStatus = false;
+        if(req.cookies != null || req.cookies != undefined){
+            loginStatus = true;
+            res.render('showData', {loginStatus});
+        }else{
+            res.redirect('/loginPage');
+        }
+        const insertResult = await (await collection).insertOne(postedData);
+        const data = await (await collection).find().toArray();
+        res.render('showData', { data, loginStatus:true });
+    }catch(err){
+        res.status(500).send('Some Error in Insertion.');
+    }
 });
+
+
 
 module.exports = router;

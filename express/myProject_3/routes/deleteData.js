@@ -14,7 +14,7 @@ router.get('/deleteData', async function(req, res, next) {
         {
             loginStatus = true;
         }
-        res.render('showData', { data, loginStatus:true });
+        res.render('showData', { data, loginStatus });
     }catch(err){
         console.error(err);
         res.status(500).send('Some Error in Delete operation');

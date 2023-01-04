@@ -40,14 +40,14 @@ router.post('/loginPage', async function(req, res, next) {
         res.cookie('loginPageCookie', token, {maxAge: 100000});
         console.log('Cookies:', req.cookies.loginPageCookie);
 
-        try{
-        const dataVerify = jwt.verify(tokenVerification, 'nodejsBatch3ExpressProject');
+        /*try{
+        const dataVerify = jwt.verify(token, 'nodejsBatch3ExpressProject');
         req.email=dataVerify.email;
         req.password=dataVerify.password;
         return next();
         }catch(err){
           console.log(err);
-        }
+        }*/
 
         res.render('ShowData', {data:data1, loginStatus:true});
         return;

@@ -2,7 +2,7 @@ var express = require('express');
 const collection = require('../utils/mongoConnection').connection();
 var router = express.Router();
 
-router.get('/getData', async function(req, res, next) {
+/*router.get('/getData', async function(req, res, next) {
     const data = await (await collection).find().toArray();
     console.log('Cookies:', req.cookies);
     let loginStatus = false;
@@ -10,9 +10,25 @@ router.get('/getData', async function(req, res, next) {
         loginStatus = true;
     }
     res.render('showData', { data, loginStatus });
+});*/
+
+router.get('/getData', async function(req, res, next) {
+    
+    //console.log(Object.keys(req.cookies).length);
+    console.log('Cookies:', JSON.stringify(req.cookies));
+    let loginStatus = false;
+    if(Object.keys(req.cookies).length !==0){
+        loginStatus = true;
+        const data = await (await collection).find().toArray();
+        res.render('showData', { data, loginStatus });
+    }else{
+        res.redirect('/loginPage');
+    }
+    
+   // res.render('showData', { data, loginStatus });
 });
 
-router.get('/getSpecificData', async function(req, res, next) {
+/*router.get('/getSpecificData', async function(req, res, next) {
     const queryData = req.query;
     const data = await (await collection).find({college:queryData.college}).toArray();
     res.render('showData', { data });
@@ -36,6 +52,6 @@ router.put('/updateData', async function(req, res, next) {
         const updateResult = await (await collection).updateOne({Name:updateData.Name}, {$set:{college:updateData.college}});
         const data = await (await collection).find().toArray();
         res.render('showData', { data });
-});
+});*/
 
 module.exports = router;
