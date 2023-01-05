@@ -3,16 +3,6 @@ const collection = require('../utils/mongoConnection').connection();
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
-/*router.get('/getData', async function(req, res, next) {
-    const data = await (await collection).find().toArray();
-    console.log('Cookies:', req.cookies);
-    let loginStatus = false;
-    if(req.cookies !== null || req.cookies !== undefined){
-        loginStatus = true;
-    }
-    res.render('showData', { data, loginStatus });
-});*/
-
 router.get('/getData', async function(req, res, next) {
     
     //console.log(Object.keys(req.cookies).length);
@@ -20,7 +10,6 @@ router.get('/getData', async function(req, res, next) {
     let loginStatus = false;
     if(Object.keys(req.cookies).length !==0){
         loginStatus = true;
-
         try{
             const dataVerify = jwt.verify(req.cookies.loginPageCookie, 'nodejsBatch3ExpressProject');
             console.log("Verified Token:", dataVerify);
@@ -33,11 +22,21 @@ router.get('/getData', async function(req, res, next) {
     }else{
         res.redirect('/loginPage');
     }
-
-    
    // res.render('showData', { data, loginStatus });
 });
+module.exports = router;
 
+
+
+/*router.get('/getData', async function(req, res, next) {
+    const data = await (await collection).find().toArray();
+    console.log('Cookies:', req.cookies);
+    let loginStatus = false;
+    if(req.cookies !== null || req.cookies !== undefined){
+        loginStatus = true;
+    }
+    res.render('showData', { data, loginStatus });
+});*/
 /*router.get('/getSpecificData', async function(req, res, next) {
     const queryData = req.query;
     const data = await (await collection).find({college:queryData.college}).toArray();
@@ -63,5 +62,3 @@ router.put('/updateData', async function(req, res, next) {
         const data = await (await collection).find().toArray();
         res.render('showData', { data });
 });*/
-
-module.exports = router;
