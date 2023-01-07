@@ -103,13 +103,19 @@ span.psw {
       <% if (error === "Incorrect credentials") { %>
        <p> Incorrect Credentials, Please give correct Credentials</p>
       <% } %>
-        <label for="email"><b>EmailId</b></label>
+        <label for="email">EmailId</label>
         <input type="email" placeholder="Enter Your Email" name="email" id="email" required><br><br>
 
-        <label for="password"><b>Password</b></label>
+        <label for="password">Password</label>
         <input type="password" placeholder="Enter Password" name="password" id="password" required>
-        <div class="error-message">Password is a required field.</div><br><br>
-  
+       <!-- <div class="error-message">Password is a required field.</div><br>-->
+        <p>Please select Login Type:</p>
+
+        <input type="radio" id="user" name="loginType" value="user">
+        <label for="user">User</label>
+        <input type="radio" id="admin" name="loginType" value="admin">
+        <label for="admin">Admin</label><br>
+
         <button type="submit">Login</button><br><br>
         <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me<br><br>
