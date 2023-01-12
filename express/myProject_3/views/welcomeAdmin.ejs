@@ -41,14 +41,14 @@ body {font-family: Arial, Helvetica, sans-serif;}
   color: lightgrey;
 }
 </style>
-
-
 </head>
-<body>
 
+<form action='/adminMessage' method='POST'>
+<body>
 <h3 style="color:#f02f3f;">Announcement!</h3>
 
 <p style="color:#f02f3f;"><b>Holidays starts from February 1st 2023...</b></p>
+
 <div class="callout">
   <div class="callout-header"><b>Holiday Announcement</b></div>
   <span class="closebtn" onclick="this.parentElement.style.display='none';">x</span>
@@ -57,5 +57,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
   </div>
 </div>
 
+<div>
+  <label for="adminMessage" style="color:#2a1ce9;"><b>Provide the message to Users:</b></label><br>
+  <textarea id="adminMessage" placeholder="Enter text here..."name="adminMessage" rows="10" cols="100"></textarea><br><br>
+  <button type="submit"><b>Submit</b></button><br><br>
+</div>
+
+
 </body>
+</form>
 </html>

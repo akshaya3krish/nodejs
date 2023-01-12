@@ -26,7 +26,7 @@ router.post('/loginPage', async function(req, res, next) {
         const token = jwt.sign({user : email}, 'nodejsBatch3ExpressProject');
         console.log(token);
 
-        res.cookie('loginPageCookie', token, {maxAge: 100000});
+        res.cookie('loginPageCookie', token, {maxAge: 1000000});
         console.log('Cookies:', req.cookies.loginPageCookie);
 
         res.render('ShowData', {data:data1, loginStatus:true});

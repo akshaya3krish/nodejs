@@ -15,6 +15,7 @@ const deleteData = require('./routes/deleteData');
 const registrationForm = require('./routes/registrationForm');
 const loginPage = require('./routes/loginPage');
 const logoutPage = require('./routes/logoutPage');
+const adminMessage = require('./routes/adminMessage');
 
 var app = express();
 
@@ -48,6 +49,8 @@ app.get('/loginPage', loginPage);
 app.post('/loginPage', loginPage);
 app.get('/logoutPage', logoutPage);
 app.post('/logoutPage', logoutPage);
+app.get('/welcomeAdmin', adminMessage);
+app.post('/adminMessage', adminMessage);
 
 
 

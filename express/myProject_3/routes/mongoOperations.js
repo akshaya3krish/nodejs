@@ -1,5 +1,6 @@
 var express = require('express');
 const collection = require('../utils/mongoConnection').connection();
+const collection2 = require('../utils/mongoConnection').adminMsgConnection();
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
@@ -14,7 +15,8 @@ router.get('/getData', async function(req, res, next) {
             const dataVerify = jwt.verify(req.cookies.loginPageCookie, 'nodejsBatch3ExpressProject');
             console.log("Verified Token:", dataVerify);
             const data = await (await collection).find().toArray();
-            res.render('showData', { data, loginStatus });
+            const adminMsgData = await (await collection2).find().toArray();
+            res.render('showData', { data, loginStatus, adminMsgData});
         }catch(err){
               console.log(err);
               return res.redirect('/loginPage');

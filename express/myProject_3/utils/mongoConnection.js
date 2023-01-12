@@ -11,6 +11,17 @@ const connection = async () => {
         return Promise.reject(err);
     }
 }
+
+const adminMsgConnection = async () => {
+    try{
+        await client.connect();
+        const collection = client.db('nodejs').collection('adminMessage');
+        return Promise.resolve(collection);
+    }catch(err){
+        return Promise.reject(err);
+    }
+}
 exports.connection=connection;
+exports.adminMsgConnection=adminMsgConnection;
 
 //mongodb://localhost:27017
