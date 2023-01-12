@@ -1,6 +1,7 @@
 var express = require('express');
 const { JsonWebTokenError } = require('jsonwebtoken');
 const collection = require('../utils/mongoConnection').connection();
+const collection2 = require('../utils/mongoConnection').adminMsgConnection();
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -18,6 +19,8 @@ router.post('/loginPage', async function(req, res, next) {
     try {
         const data = await (await collection).findOne({email : email});
         const data1 = await (await collection).find().toArray();
+        const adminMsgData = await (await collection2).find().toArray();
+        console.log(adminMsgData);
         if (!data.email) 
         return res.status(400).send("email not found");
 
@@ -29,7 +32,7 @@ router.post('/loginPage', async function(req, res, next) {
         res.cookie('loginPageCookie', token, {maxAge: 1000000});
         console.log('Cookies:', req.cookies.loginPageCookie);
 
-        res.render('ShowData', {data:data1, loginStatus:true});
+        res.render('ShowData', {data:data1, loginStatus:true, adminMsgData:adminMsgData[1]});
         }else if(req.body.loginType == 'admin'){
           const token = jwt.sign({user : email}, 'nodejsBatch3ExpressProject');
           console.log(token);

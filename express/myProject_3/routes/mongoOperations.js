@@ -16,7 +16,8 @@ router.get('/getData', async function(req, res, next) {
             console.log("Verified Token:", dataVerify);
             const data = await (await collection).find().toArray();
             const adminMsgData = await (await collection2).find().toArray();
-            res.render('showData', { data, loginStatus, adminMsgData});
+            console.log(adminMsgData);
+            res.render('showData', { data, loginStatus, adminMsgData:adminMsgData[1]});
         }catch(err){
               console.log(err);
               return res.redirect('/loginPage');
