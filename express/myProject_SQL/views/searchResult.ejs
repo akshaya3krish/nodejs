@@ -1,0 +1,67 @@
+<%- include('./partials/header') -%>
+<style>
+    table, th, td {
+      border: 1px solid rgb(12, 35, 138);
+      border-collapse: collapse;
+    }
+    th, td {
+      background-color: #f2f5fa;
+    }
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.callout {
+  position: fixed;
+  bottom: 35px;
+  right: 20px;
+  margin-left: 20px;
+  max-width: 300px;
+}
+
+.callout-header {
+  padding: 25px 15px;
+  background: #555;
+  font-size: 30px;
+  color: white;
+}
+
+.callout-container {
+  padding: 15px;
+  background-color: #ccc;
+  color: black
+}
+
+.closebtn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: lightgrey;
+}
+</style>
+
+<form method='POST' action='/showSearchPage' id='form'>
+<table>
+    <tr>
+       <th>EmpID</th>
+       <th>EmpFirstName</th>
+       <th>EmpLastName</th>
+       <th>Address</th>
+       <th>City</th>
+    </tr>
+ 
+    <% for (let i = 0; i < data.length; i++) { %>
+     <tr>
+       <td style="color:rgb(13, 27, 230)"><%= data[i].EmpID %></td>
+       <td><%= data[i].EmpFirstName %></td>
+       <td><%= data[i].EmpLastName %></td>
+       <td><%= data[i].Address %></td>
+       <td><%= data[i].City %></td>
+     </tr>    
+    <% } %>
+ </table>
+</form>
