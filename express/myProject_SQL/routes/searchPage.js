@@ -4,6 +4,11 @@ const connObj = require('../utils/sqlConnection');
 var router = express.Router();
 const { JsonWebTokenError } = require('jsonwebtoken');
 const jwt = require('jsonwebtoken');
+var Json2csvParser = require('json2csv').Parser;
+const fs = require('fs');
+const { response } = require('../app');
+
+
 
 router.get('/showSearchPage', function(req, res, next) {
   let loginStatus = false;
@@ -34,7 +39,15 @@ router.post('/showSearchPage', async function(req, res, next) {
         console.log(dropDownResult);
         if(dropDownResult.recordset !== null && dropDownResult.recordset !== undefined)
         {
+        var mssql_data = JSON.parse(JSON.stringify(dropDownResult.recordset));
+        var file_header = ['EmpID', 'EmpFirstName', 'EmpLastName', 'Address', 'City'];
+        var json_data = new Json2csvParser({file_header});
+        var csv_data = json_data.parse(mssql_data);
+        res.setHeader("Content-Type", "text/csv");
+        res.setHeader("Content-Disposition", "attachment; filename=sample_data.csv");
+        res.status(200).end(csv_data);
         res.render('searchResult', {data:dropDownResult.recordset});
+        
         }else{
           res.send("Please check");
         }
