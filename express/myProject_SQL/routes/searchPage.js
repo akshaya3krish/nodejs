@@ -6,7 +6,8 @@ const { JsonWebTokenError } = require('jsonwebtoken');
 const jwt = require('jsonwebtoken');
 var Json2csvParser = require('json2csv').Parser;
 const fs = require('fs');
-const { response } = require('../app');
+//const { response } = require('../app');
+var nodemailer = require('nodemailer');
 
 
 
@@ -43,10 +44,47 @@ router.post('/showSearchPage', async function(req, res, next) {
         var file_header = ['EmpID', 'EmpFirstName', 'EmpLastName', 'Address', 'City'];
         var json_data = new Json2csvParser({file_header});
         var csv_data = json_data.parse(mssql_data);
+        fs.writeFileSync('./sample_data.csv',csv_data);
         res.setHeader("Content-Type", "text/csv");
         res.setHeader("Content-Disposition", "attachment; filename=sample_data.csv");
+        
         res.status(200).end(csv_data);
-        res.render('searchResult', {data:dropDownResult.recordset});
+        
+
+
+        //sending email using node mailer
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          host:'smtp.gmail.com',
+          port:465,
+          secure: true,
+          auth: {
+            user: 'nodejsbatch3@gmail.com',
+            pass: 'qesftrocbqoaurgm',
+          }
+        });
+        
+        var mailOptions = {
+          from: 'nodejsbatch3@gmail.com',
+          to: 'nodejsbatch3@gmail.com',
+          subject: 'Sending Email using Node.js',
+          text: 'This is the email from MyProject SQL!',
+          attachments: [
+            {
+              filename: 'sample_data.csv',
+              path: "F:/nodejs/nodejs/express/myProject_SQL/sample_data.csv",
+            }]
+        };
+        
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent successfully: ' + info.response);
+          }
+          //res.render('searchResult', {data:dropDownResult.recordset});
+        });
+       
         
         }else{
           res.send("Please check");
